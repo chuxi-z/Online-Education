@@ -28,4 +28,21 @@ Vue
 #### 后端
 SpringBoot &ensp;SpringCloud &ensp; MybatisPlus &ensp; 分布式
 ## 测试
+[swaggerTest](http://localhost:8001/swagger-ui.html) 测试controller行为
 
+## 运行
+```
+//nginx 配置请求跳转
+server {
+        listen   9001;
+        server_name  localhost;
+        
+        location ~ /eduservice/ {
+            proxy_pass http://localhost:8001;
+        }
+        
+        location ~ /eduoss/ {
+            proxy_pass http://localhost:8002;
+        }
+    }
+```

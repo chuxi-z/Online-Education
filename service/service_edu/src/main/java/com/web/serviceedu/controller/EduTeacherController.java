@@ -3,6 +3,7 @@ package com.web.serviceedu.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.web.commonutils.RParadigm;
+import com.web.servicebase.exceptionHandler.customizeException;
 import com.web.serviceedu.entity.EduTeacher;
 import com.web.serviceedu.entity.vo.TeacherQuery;
 import com.web.serviceedu.service.EduTeacherService;
@@ -25,7 +26,8 @@ import java.util.List;
 
 @Api(description = "lecturer Management")
 @RestController
-@RequestMapping("/serviceedu/teacher")
+@RequestMapping("/eduservice/teacher")
+@CrossOrigin
 public class EduTeacherController {
 
     @Autowired
@@ -48,7 +50,7 @@ public class EduTeacherController {
         return RParadigm.error();
     }
 
-    @GetMapping("/PageTeacher/{current}/{size}")
+    @GetMapping("/pageTeacher/{current}/{size}")
     public RParadigm pageListTeacher(@PathVariable("current") long current,
                                      @PathVariable("size") long size){
         Page<EduTeacher> teacherPage = new Page<>(current, size);
@@ -60,7 +62,7 @@ public class EduTeacherController {
     }
 
 
-    @PostMapping("/PageTeacherCondition/{current}/{size}")
+    @PostMapping("/pageTeacherCondition/{current}/{size}")
     public RParadigm TeacherCondition(@PathVariable("current") long current,
                                       @PathVariable("size") long size,
                                       @RequestBody(required = false) TeacherQuery query){
@@ -83,6 +85,7 @@ public class EduTeacherController {
         if(!StringUtils.isEmpty(end)){
             wrapper.le("gmt_create", end);
         }
+        wrapper.orderByDesc("gmt_create");
 
         eduTeacherService.page(teacherPage, wrapper);
         long total = teacherPage.getTotal();
@@ -100,9 +103,15 @@ public class EduTeacherController {
         return RParadigm.error();
     }
 
-    @GetMapping("/teacher/{id}")
+    @GetMapping("/getTeacher/{id}")
     public RParadigm getTeacher(@PathVariable("id") String id){
         EduTeacher teacher = eduTeacherService.getById(id);
+//        try {
+//            int r = 10/0;
+//        }
+//        catch (Exception e){
+//            throw new customizeException(20001, "start custimized exception...");
+//        }
         return RParadigm.ok().data("teacher", teacher);
     }
 
