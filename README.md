@@ -33,6 +33,7 @@ SpringBoot &ensp;SpringCloud &ensp; MybatisPlus &ensp; 分布式
 ## 运行
 ```
 //nginx 配置请求跳转
+//brew services start nginx
 server {
         listen   9001;
         server_name  localhost;
