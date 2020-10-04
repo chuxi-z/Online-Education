@@ -48,7 +48,7 @@ server {
     }
 ```
 
-#配置
+## 配置
 ```editorconfig
 #Edu-service
 spring.profiles.active=dev
