@@ -78,6 +78,7 @@ mybatis-plus.mapper-locations=classpath:com/web/serviceedu/mapper/xml/*.xml
 #mybatis-plus.config-location=
 ```
 
+
 ```editorconfig
 #oss-config
 #服务端口
@@ -98,6 +99,24 @@ aliyun.oss.file.bucketname=online-edu-zz
 ```
 
 ```editorconfig
+#配置mapper
+mybatis-plus.mapper-locations=classpath:com/web/serviceedu/mapper/xml/*.xml
+
+#pom.xml
+<build>
+    <resources>
+        <resource>
+            <directory>src/main/java</directory>
+            <includes>
+                <include>**/*.xml</include>
+            </includes>
+            <filtering>false</filtering>
+        </resource>
+    </resources>
+</build>
+```
+
+```editorconfig
 #进入lib目录 终端命令
 mvn install:install-file -DgroupId=com.aliyun -DartifactId=aliyun-sdk-vod-upload -Dversion=1.4.11 -Dpackaging=jar -Dfile=aliyun-java-vod-upload-1.4.11.jar
 
@@ -108,4 +127,15 @@ mvn install:install-file -DgroupId=com.aliyun -DartifactId=aliyun-sdk-vod-upload
     <version>1.4.11</version>
 </dependency>
 
+```
+
+```editorconfig
+#SpringCloud
+
+# nacos服务地址
+spring.cloud.nacos.discovery.server-addr=localhost:8848
+
+feign.hystrix.enabled=true
+# 设置hystrix超时时间，默认1000ms
+#hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds=6000
 ```
