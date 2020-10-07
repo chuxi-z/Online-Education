@@ -71,11 +71,19 @@ public class EduChapterServiceImpl extends ServiceImpl<EduChapterMapper, EduChap
 
         int count = eduVideoService.count(wrapper);
         if(count > 0){
-            throw  new customizeException(20001, "videos exists, can delete this chapter!");
+            throw  new customizeException(20001, "videos exists, can not delete this chapter!");
         }
         else{
             int delete = baseMapper.deleteById(chapterId);
             return delete>0;
         }
+    }
+
+    @Override
+    public void removeChapterByCourseId(String courseId) {
+
+        QueryWrapper<EduChapter> wrapper = new QueryWrapper<>();
+        wrapper.eq("course_id", courseId);
+        baseMapper.delete(wrapper);
     }
 }

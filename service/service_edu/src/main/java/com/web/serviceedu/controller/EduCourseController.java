@@ -9,6 +9,8 @@ import com.web.serviceedu.service.EduCourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * <p>
  * 课程 前端控制器
@@ -24,6 +26,13 @@ public class EduCourseController {
 
     @Autowired
     EduCourseService eduCourseService;
+
+    @GetMapping("/getAll")
+    public RParadigm getAllCourse() {
+        List<EduCourse> list = eduCourseService.list(null);
+
+        return RParadigm.ok().data("list", list);
+    }
 
     @PostMapping("/addCourseInfo")
     public RParadigm addCourseInfo(@RequestBody CourseInfoVo courseInfoVo){
@@ -59,5 +68,12 @@ public class EduCourseController {
         eduCourseService.updateById(eduCourse);
         return RParadigm.ok();
     }
+
+    @DeleteMapping("/deleteCourseList/{id}")
+    public RParadigm deleteCourseList(@PathVariable String id){
+        eduCourseService.removeCourse(id);
+        return RParadigm.ok();
+    }
+
 }
 

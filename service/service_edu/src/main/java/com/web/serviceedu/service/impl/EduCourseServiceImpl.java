@@ -6,9 +6,11 @@ import com.web.serviceedu.entity.EduCourseDescription;
 import com.web.serviceedu.entity.vo.CourseInfoVo;
 import com.web.serviceedu.entity.vo.CoursePublishVo;
 import com.web.serviceedu.mapper.EduCourseMapper;
+import com.web.serviceedu.service.EduChapterService;
 import com.web.serviceedu.service.EduCourseDescriptionService;
 import com.web.serviceedu.service.EduCourseService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.web.serviceedu.service.EduVideoService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -27,6 +29,12 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
 
     @Autowired
     EduCourseDescriptionService eduCourseDescriptionService;
+
+    @Autowired
+    EduVideoService eduVideoService;
+
+    @Autowired
+    EduChapterService  eduChapterService;
 
     @Override
     public String saveCourseInfo(CourseInfoVo courseInfoVo) {
@@ -78,5 +86,21 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
     public CoursePublishVo getPublishInfo(String id) {
         CoursePublishVo publishVo = baseMapper.getAllInfo(id);
         return publishVo;
+    }
+
+    @Override
+    public void removeCourse(String courseId) {
+        //删除小节
+        eduVideoService.removeVideoByCourseId(courseId);
+        //删除章节
+        eduChapterService.removeChapterByCourseId(courseId);
+        //删除描述
+        eduCourseDescriptionService.removeById(courseId);
+        //删除课程
+        int delete = baseMapper.deleteById(courseId);
+
+        if(delete < 1){
+            throw new customizeException(20001, "delete failed...");
+        }
     }
 }

@@ -35,6 +35,12 @@ SpringBoot &ensp;SpringCloud &ensp; MybatisPlus &ensp; 分布式
 //nginx 配置请求跳转
 //brew services start nginx
 server {
+        #配置nginx上传文件大小
+        #打开nginx主配置文件nginx.conf，找到http{}，添加
+        http{
+            client_max_body_size 1024m;
+        }
+        
         listen   9001;
         server_name  localhost;
         
@@ -44,6 +50,10 @@ server {
         
         location ~ /eduoss/ {
             proxy_pass http://localhost:8002;
+        }
+
+        location ~ /eduvod/ {
+            proxy_pass http://localhost:8003;
         }
     }
 ```
@@ -85,4 +95,17 @@ aliyun.oss.file.keyid=LTAI4GJFcCEtJPRk7T7PYKKo
 aliyun.oss.file.keysecret=r1TMYazBHxKEWQl9YmMdYQStmlBxuE
 #bucket可以在控制台创建，也可以使用java代码创建
 aliyun.oss.file.bucketname=online-edu-zz
+```
+
+```editorconfig
+#进入lib目录 终端命令
+mvn install:install-file -DgroupId=com.aliyun -DartifactId=aliyun-sdk-vod-upload -Dversion=1.4.11 -Dpackaging=jar -Dfile=aliyun-java-vod-upload-1.4.11.jar
+
+#阿里云 视频点播配置无法从maven仓库中下载 手动下载并加入jar包
+<dependency>
+    <groupId>com.aliyun</groupId>
+    <artifactId>aliyun-sdk-vod-upload</artifactId>
+    <version>1.4.11</version>
+</dependency>
+
 ```

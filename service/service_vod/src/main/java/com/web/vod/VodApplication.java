@@ -1,16 +1,18 @@
-package com.web.oss;
+package com.web.vod;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 @EnableDiscoveryClient
-@ComponentScan({"com.web"})
-public class OssApplication {
+@EnableFeignClients
+@ComponentScan(basePackages = {"com.web"})
+public class VodApplication {
     public static void main(String[] args) {
-        SpringApplication.run(OssApplication.class, args);
+        SpringApplication.run(VodApplication.class, args);
     }
 }
