@@ -3,6 +3,9 @@ package com.web.vod.controller;
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.vod.model.v20170321.DeleteVideoRequest;
+import com.aliyuncs.vod.model.v20170321.GetVideoInfoRequest;
+import com.aliyuncs.vod.model.v20170321.GetVideoPlayAuthRequest;
+import com.aliyuncs.vod.model.v20170321.GetVideoPlayAuthResponse;
 import com.web.commonutils.RParadigm;
 import com.web.servicebase.exceptionHandler.customizeException;
 import com.web.vod.Utils.ConstantVodUtil;
@@ -50,5 +53,24 @@ public class VodController {
     public RParadigm deleteBatchCloudVideo(@RequestParam("videoList") List<String> videoList){
         vodService.removeBatchCloudVideo(videoList);
         return RParadigm.ok();
+    }
+
+
+    @GetMapping("/getPlayAuth/{id}")
+    public RParadigm getPlayAuth(@PathVariable String id){
+        try {
+            DefaultAcsClient client = InitVodObject.initVodClient(ConstantVodUtil.ACCESS_KEY_ID, ConstantVodUtil.ACCESS_KEY_SECRET);
+            GetVideoPlayAuthRequest request = new GetVideoPlayAuthRequest();
+            request.setVideoId(id);
+
+            GetVideoPlayAuthResponse response = client.getAcsResponse(request);
+            String playAuth = response.getPlayAuth();
+
+//            System.out.println(playAuth);
+            return RParadigm.ok().data("playAuth", playAuth);
+        }
+        catch (Exception e){
+            throw new customizeException(20001, "Fail to get PlayAuth...");
+        }
     }
 }

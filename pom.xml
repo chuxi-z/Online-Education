@@ -8,6 +8,7 @@
         <module>service_oss</module>
         <module>common</module>
         <module>service_base</module>
+        <module>infrastructure</module>
     </modules>
 
     <parent>
