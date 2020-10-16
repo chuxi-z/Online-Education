@@ -1,0 +1,12 @@
+{
+    "success": true,
+    "code":20000,
+    "message":"success!",
+    "data":{
+        "items":[
+            {"name":"Lucy", "age":"20"},
+            {"name":"Mary", "age":"30"},
+            {"name":"Jack", "age":"50"}
+        ]
+    }
+}

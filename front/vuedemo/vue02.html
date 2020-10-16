@@ -1,0 +1,126 @@
+<!--Using vuehtml could initial code of vue-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!--Single direction:-->
+        <!-- <h1 :title="message">
+            {{content}}
+        </h1> -->
+
+        <!--Single direction:-->
+        <!-- <input type="text" v-bind:value="searchMap.keyWord"> -->
+        <!--Bidirection:-->
+        <!-- <input type="text" v-model="searchMap.keyWord"/>
+        <p>{{searchMap.keyWord}}</p> -->
+
+        <!--Input button:-->
+        <!-- <button v-on:click="search()"></button>
+        <button @click="search()"></button>
+        <button @click="search"></button> -->
+
+        <!--Decoration: overlap origin event:-->
+        <!-- <form action="save" v-on:submit.prevent="onSubmit">
+            <input type="text" id="name" v-model="user.username"/>
+            <button type="submit">save</button>
+        </form> -->
+
+        <!--Conditional statement:-->
+        <!-- <input type="checkbox" v-model="ok"/> yes or no
+        <h1 v-if="ok">Congratuations!</h1>
+        <h1 v-else>Sorry!</h1> -->
+
+        <!--List:-->
+        <!-- <table>
+            <tr v-for="(item, index) in userList">
+                <td>{{index}}</td>
+                <td>{{item.id}}</td>
+                <td>{{item.username}}</td>
+                <td>{{item.age}}</td>
+            </tr>
+        </table> -->
+
+        <!--Components:-->
+        <Navbar></Navbar>
+
+
+
+
+    </div>
+    <script src="vue.min.js"></script>
+    <script src="components/Navbar.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                //Single direction:
+                //content:'I am title',
+                //message:'the page loading at: ' +  new Date().toLocaleString()
+                
+                //Single direction&Bidirection:
+                // searchMap:{
+                //     keyWord:'hi'
+                // },
+                // result:{}
+
+                //Decoration: overlap origin event:
+                //user:{}
+
+                //Conditional statement:
+                //ok:false
+                
+                //List:
+                // userList: [
+                //     { id: 1, username: 'helen', age: 18 },
+                //     { id: 2, username: 'peter', age: 28 },
+                //     { id: 3, username: 'andy', age: 38 }
+                // ]
+
+            },
+           
+            methods:{
+                 //Input button:
+                // search(){
+                //     console.log('search....')
+                // }
+                
+                //Decoration: overlap origin event:
+                // onSubmit(){
+                //     if(this.user.username){
+                //         console.log('submitted')
+                //     }else{
+                //         alert('please input username')
+                //     }
+                // }
+            },
+                
+            components: {
+                //name of component:  
+                // 'Navbar': {
+                //     //content of component:
+                //     template: '<ul><li>Main</li><li>Username</li></ul>'
+                //}
+        
+            },
+
+            created(){//Before page rendering 
+                debugger
+                console.log('created....')
+            },
+            mounted(){//After page rendering 
+                debugger
+                console.log('mounted....')
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<script>
+// Define variables
+let a = 1;
+console.log(a)
+
+// Define constant
+const PI = "3.1415926"
+console.log(PI)
+
+// Define list
+let [x, y, z] = [1, 2, 3]
+console.log(x, y, z)
+
+// Object Destruction
+let user = {name: 'Helen', age: 18}
+let { name, age } =  user
+console.log(name, age)
+
+// Muti-rows string
+let string1 =  `Hey,
+can you stop angry now?`
+console.log(string1)
+
+// Using ${} insert variables into string
+let name1 = "Mike"
+let age1 = 27
+let info = `My Name is ${name1},I am ${age1+1} years old next year.`
+console.log(info)
+
+// Using ${} insert function into string
+function f(){
+    return "have fun!"
+}
+let string2 = `Game start,${f()}`
+console.log(string2); 
+
+// Declaring Objects
+const age2 = 12
+const name2 = "Amy"
+const person2 = {age2, name2}
+console.log(person2) 
+
+// Define function
+const person3 = {//class
+    sayHi(){//func
+        console.log("Hi")
+    }
+}
+person3.sayHi()//call
+
+// Copy objects
+let person4 = {name: "Amy", age: 15}
+let someone = { ...person4 }
+console.log(someone) 
+
+// Merge objects
+let age3 = {age: 15}
+let name3 = {name: "Amy"}
+let person5 = {...age3, ...name3}
+console.log(person5) 
+
+// Using => define function
+var f2 = a => a
+console.log(f2(1))
+
+var f3 = (a,b) => a+b
+console.log(f3(6,2))
+</script>

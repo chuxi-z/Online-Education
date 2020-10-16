@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+                <h1>Hello App!</h1>
+                <p>
+                    <router-link to="/">Main</router-link>
+                    <router-link to="/student">Student</router-link>
+                    <router-link to="/teacher">Teacher</router-link>
+                </p>
+
+                <router-view></router-view>
+            </div>
+    <script src="vue.min.js"></script>
+    <script src="vue-router.js"></script>
+
+    <script>
+                // Define components:
+                const Welcome = { template: '<div>Welcome/div>' }
+                const Student = { template: '<div>student list</div>' }
+                const Teacher = { template: '<div>teacher list</div>' }
+                // Define routers:
+                const routes = [
+                    { path: '/', redirect: '/welcome' }, //default
+                    { path: '/welcome', component: Welcome },
+                    { path: '/student', component: Student },
+                    { path: '/teacher', component: Teacher }
+                ]
+                // Create router instance, and then pass 'Routes' configuration
+                const router = new VueRouter({
+                    routes 
+                })
+
+                // Create and mount root instances
+                const app = new Vue({
+                    el: '#app',
+                    router
+                })
+            </script>
+</body>
+</html>
