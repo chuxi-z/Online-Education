@@ -20,7 +20,7 @@ pattern：B2C
 #### front-end
 Vue Nodejs
 #### back-end
-SpringBoot &ensp;SpringCloud &ensp; MybatisPlus &ensp; 
+SpringBoot &ensp;SpringCloud &ensp; MybatisPlus &ensp; Redis &ensp; Swagger &ensp; 
 ## test
 [swaggerTest](http://localhost:8001/swagger-ui.html) test controller api
 
